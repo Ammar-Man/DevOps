@@ -26,6 +26,15 @@ app.use(cors())
 // Vi visar en statisk sida på site root
 app.use('/', express.static(__dirname + '/public'))
 
+
+// Vi importerar våra routes 
+const bankaccountsRouter = require('./routes/bankaccounts')
+app.use('/bankaccounts', bankaccountsRouter)
+
+// Vi importerar våra routes 
+const visaCardsRouter = require('./routes/visacards')
+app.use('/visacards', visaCardsRouter)
+
 // Vi importerar våra routes 
 const usersRouter = require('./routes/users')
 app.use('/users', usersRouter)

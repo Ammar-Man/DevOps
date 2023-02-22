@@ -1,0 +1,37 @@
+@baseURL = http://localhost:3040
+@token = Bearer {{$dotenv JWT_TOKEN}}
+###@baseURL = https://wom22-ammar.azurewebsites.net/
+
+
+###Get all users
+GET {{baseURL}}/visacards
+Authorization: {{token}}
+
+### Make a new visaCard
+POST  {{baseURL}}/visacards/
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+
+    "cardType": "VISA",
+    "cardNumber": "44569042319219111",
+    "cardDate": "8/2028",
+    "cardCode": "2151",
+    "cardMoney" :"5000"
+}
+
+# {
+#   "maker": "63f4b8d612235fceceb28a4f",
+#   "firstName": "AMMAR",
+#   "lastName": "MAN",
+#   "cardType": "VISA",
+#   "cardNumber": "4556904231921977",
+#   "cardDate": "7/2026",
+#   "cardCode": "7/2026",
+#   "_id": "63f5284e81beb12702fae526",
+#   "createdAt": "2023-02-21T20:23:42.150Z",
+#   "updatedAt": "2023-02-21T20:23:42.150Z",
+#   "__v": 0
+# }
+

@@ -25,10 +25,11 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "firstName": "Ammar",
-    "lastName": "Boss",
-    "email": "ammar@arcada.fi",
-    "password": "Password123"
+    "firstName": "Lolo",
+    "lastName": "Bob",
+    "email": "Bob@arcada.fi",
+    "password": "Password123",
+     "archived": true
 }
 
 
@@ -37,14 +38,15 @@ POST  {{baseURL}}/users/login
 Content-Type: application/json
 
 {
-    "email": "ammar@arcada.fi",
+    "email": "Bob@arcada.fi",
     "password": "Password123"
 }
-
+### "email": "ammar@arcada.fi",
+###   "password": "Password123"
 
 ###
 ### Aktivera user true
-PATCH {{baseURL}}/users/63f4b8d612235fceceb28a4f
+PATCH {{baseURL}}/users/63f5fdb730321af49ba9aa26
 Content-Type: application/json
 Authorization: {{token}}
 
