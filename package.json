@@ -2,6 +2,7 @@
   "name": "DevOps",
   "version": "1.0.0",
   "description": "description",
+  "start":"node server.js",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",

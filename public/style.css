@@ -1,0 +1,48 @@
+
+
+
+@media (max-width: 800px) {
+    .flex-container {
+      flex-direction: column;
+    }
+    .notes{
+        float: unset;
+    }
+    select{
+        max-width: 90%;
+    }
+    .notes{
+      min-height: unset;
+    }
+  }
+
+  #logOutButton{
+    display: none;
+  }
+
+ #usersInfo{
+  display: none;
+ }
+
+ #login{
+  display: block;
+ }
+
+#usersBank{
+  /* none defult not on  */
+  display: none;
+}
+
+#container-register{
+  /* none defult not on  */
+  display: none;
+}
+
+#btn-Profile{
+    /* none defult not on  */
+    display: none;
+}
+#btn-Bank{
+  /* none defult not on  */
+  display: none;
+}

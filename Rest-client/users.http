@@ -25,13 +25,17 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "firstName": "Lolo",
+    "firstName": "Boss",
     "lastName": "Bob",
-    "email": "Bob@arcada.fi",
+    "email": "Boss@arcada.fi",
     "password": "Password123",
      "archived": true
 }
-
+###  "firstName": "Lolo",
+#   ##  "lastName": "Bob",
+#   ##  "email": "Bob@arcada.fi",
+#   ##  "password": "Password123",
+# ##     "archived": true
 
 ### LOGIN
 POST  {{baseURL}}/users/login
