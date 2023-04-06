@@ -18,6 +18,12 @@ document.querySelector('#btn-register').addEventListener('click', (e) => {
     getRegister();
 });
 
+document.querySelector('#btn-Bank').addEventListener('click', (e) => {
+    getBank();
+});
+
+
+
 
 
 
@@ -251,6 +257,38 @@ async function userRegister() {
     // LogoutButton();
 }
 
+async function getBank(){
+    const resp = await fetch(API_URL + '/bankaccounts', {
+        method: "GET",
+        headers: {
+
+            "Authorization": "Bearer " + localStorage.getItem('jwt')
+        }
+    });
+
+    if (resp.status > 201) { return showLoging(); }
+
+    const notes = await resp.json();
+    console.log(notes);
+    console.log(notes[0]);
+    document.querySelector('#usersBank').style.display = 'block';
+    
+    let notesHTML = "";
+
+    notesHTML += `
+         <div><h2>Bank Accounts info</h2></div>
+         <div class = "note">
+         BankAccountBalance: ${notes[0].bankAccountBalance} <br>
+         BankAccountNumber: ${notes[0].bankAccountNumber} <br>
+         VisaCardId : ${notes[0].visaCardId}<br>
+         VisaCardMoney:  ${notes[0].visaCardMoney} £<br>
+        </div>
+        
+         `;
+
+    document.querySelector('#usersBank').innerHTML = notesHTML;
+}
+
 async function getOrders() {
     const resp = await fetch(API_URL + '/orders', {
         method: "GET",
@@ -471,3 +509,4 @@ function getRegister(){
 }
 LogoutButton();
 getUserInfo();
+getBank();
