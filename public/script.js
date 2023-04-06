@@ -216,6 +216,7 @@ async function login() {
 
     localStorage.setItem("jwt", respJson.token);
      getUserInfo();
+     getBank();
 
     // insertChooseCabin();
     // insertOrderedServices();
@@ -248,6 +249,8 @@ async function userRegister() {
 
     localStorage.setItem("jwt", respJson.token);
      getUserInfo();
+     getBank();
+     
 
     // insertChooseCabin();
     // insertOrderedServices();
@@ -278,10 +281,10 @@ async function getBank(){
     notesHTML += `
          <div><h2>Bank Accounts info</h2></div>
          <div class = "note">
-         BankAccountBalance: ${notes[0].bankAccountBalance} <br>
+         BankAccountBalance: ${notes[0].bankAccountBalance} £ <br>
          BankAccountNumber: ${notes[0].bankAccountNumber} <br>
          VisaCardId : ${notes[0].visaCardId}<br>
-         VisaCardMoney:  ${notes[0].visaCardMoney} £<br>
+         
         </div>
         
          `;
