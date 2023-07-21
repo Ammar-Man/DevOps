@@ -14,8 +14,8 @@ router.get('/', authToken, async (req, res) => {
 })
 // Get user info
 router.get('/info', authToken, async (req, res) => {
-    const getUser = await User.findOne({maker: req.authUser.sub})
-    console.log(getUser)
+    const getUser = await User.findById(req.authUser.sub);
+   console.log(req.authUser.sub)
     res.send({
         userInfo: {
         _id: getUser._id,
@@ -27,6 +27,7 @@ router.get('/info', authToken, async (req, res) => {
 // Endpoint at /users/login
 router.post('/login', async (req, res) => {
     console.log(req)
+    console.log(res)
     // Kolla om det finns en användare med det namnet
     const user = await User.findOne({email: req.body.email}).exec()
     if (user == null) {

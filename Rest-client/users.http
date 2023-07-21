@@ -27,8 +27,8 @@ Content-Type: application/json
 {
     "firstName": "Boss",
     "lastName": "Bob",
-    "email": "Boss@arcada.fi",
-    "password": "Password123",
+    "email": "Test@gmail.com",
+    "password": "123456",
      "archived": true
 }
 ###  "firstName": "Lolo",

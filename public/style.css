@@ -1,4 +1,8 @@
+.image_max{
+  width: 200px;
+  height: 150px;
 
+}
 
 
 @media (max-width: 800px) {
@@ -14,10 +18,17 @@
     .notes{
       min-height: unset;
     }
+    .image_max{
+      max-width:  90%;
+      max-height: 90%;
+    }
+   
+ 
   }
 
   #logOutButton{
     display: none;
+    /* test from none to block to avoid refreshing  */
   }
 
  #usersInfo{

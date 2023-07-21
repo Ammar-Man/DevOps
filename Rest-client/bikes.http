@@ -1,0 +1,60 @@
+@baseURL = http://localhost:3040
+@token = Bearer {{$dotenv JWT_TOKEN}}
+###@baseURL = https://wom22-ammar.azurewebsites.net/
+
+
+###Get all users visa and info
+GET {{baseURL}}/bikes/info
+Authorization: {{token}}
+
+###Get all bikes
+GET {{baseURL}}/bikes
+# Authorization: {{token}}
+
+### Make a new bankaccounts
+POST  {{baseURL}}/bikes
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "bikeName": "Trek Roscoe 8 XL maastopyörä",
+  "bikePrice": "990",
+  "bikeCondition": "Hyvä",
+  "bikeDate": "2020",
+  "bikeImg": "https://images.tori.fi/api/v1/imagestori/images/4971449856.jpg?rule=medium_660",
+  "moreInfo": "Myynnissä hyväkuntoinen trek roscoe 8 vm.2019. Runkokoko XL",
+  "__v": 0
+}
+
+### Aktivera user true
+PATCH {{baseURL}}/bikes/63f5fdb730321af49ba9aa26
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "bikeName": "Trek Roscoe 8 XL maastopyörä",
+  "bikePrice": "990",
+  "bikeCondition": "Hyvä",
+  "bikeDate": "2020",
+  "bikeImg": "https://images.tori.fi/api/v1/imagestori/images/4971449856.jpg?rule=medium_660",
+  "moreInfo": "Myynnissä hyväkuntoinen trek roscoe 8 vm.2019. Runkokoko XL",
+  "__v": 0
+}
+
+
+###
+
+### Radera user 
+DELETE {{baseURL}}/bikes/64afd7aa6cc90bbfc2fe815b
+Authorization: {{token}}
+
+
+###
+### Modifiera userdata en ting
+PUT {{baseURL}}/bikes/6332ead72092c8016c9b6a62
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "email": "test@arcada.soumi"
+}

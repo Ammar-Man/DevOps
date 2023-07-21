@@ -32,6 +32,11 @@ const bankaccountsRouter = require('./routes/bankaccounts')
 app.use('/bankaccounts', bankaccountsRouter)
 
 // Vi importerar våra routes 
+const bikesRouter = require('./routes/bikes')
+app.use('/bikes', bikesRouter)
+
+
+// Vi importerar våra routes 
 const visaCardsRouter = require('./routes/visacards')
 app.use('/visacards', visaCardsRouter)
 
