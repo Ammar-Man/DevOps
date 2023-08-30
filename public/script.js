@@ -1,7 +1,37 @@
-console.log("hello");
+console.log("script.js");
 
 const API_URL = "http://localhost:3040";
 
+
+// buttons here! 
+document.querySelector('#btn-Profile').addEventListener('click', (e) => {showProfile();});
+
+
+async function showProfile(){
+    console.log("showProfile works");
+    const resp = await fetch(API_URL + '/users/info', {
+        method: "GET",
+        headers: { "Authorization": "Bearer " + localStorage.getItem('jwt') }
+    });
+    if (resp.status > 201) { return showLoging(); }
+    const notes = await resp.json();
+    // console.log(notes);
+
+    localStorage.setItem("currentUser",JSON.stringify(notes.userInfo));
+    
+    document.querySelector('#usersInfo').style.display = 'block';
+    let notesHTML = "";
+    notesHTML += `
+         <div><h2>Users info</h2></div>
+         <div class = "note">
+         Id: ${notes.userInfo._id} <br>
+         Email: ${notes.userInfo.email} <br>
+         FirstName : ${notes.userInfo.firstName}<br>
+         LastName:  ${notes.userInfo.lastName}  <br>
+        </div>
+        `;
+    document.querySelector('#usersInfo').innerHTML = notesHTML;
+}
 // to avoid erron with out login button 
 
     if( document.querySelector('#login').style.display == "block")  {
@@ -23,61 +53,47 @@ const API_URL = "http://localhost:3040";
 if(localStorage.getItem('jwt')!= ""){
 
     getUserInfo();
-    console.log("test_jwt");
-    document.querySelector('#btn-Profile').addEventListener('click', (e) => {
-        getUserInfo();
-        console.log("test_jwt2");
-    });
+    console.log("token in localstorage");
+   
+    // document.querySelector('#btn-Profile').addEventListener('click', (e) => {getUserInfo();});
 
-    document.querySelector('#btn-send-register').addEventListener('click', (e) => {
-        userRegister();
-    });
-    console.log("test_jwt3");
+    document.querySelector('#btn-send-register').addEventListener('click', (e) => {userRegister();});
+  
 }
 
 document.querySelector('#loginbtm').addEventListener('click', (e) => {
     loginHtml();
 });
 
-
-
 document.querySelector('#btn-Bank').addEventListener('click', (e) => {
     // getBank();
 });
 
+
+// login async get user info
 async function getUserInfo() {
-    const resp = await fetch(API_URL + '/users/info', {
-        method: "GET",
-        headers: {
-
-            "Authorization": "Bearer " + localStorage.getItem('jwt')
-        }
-    });
-
-    if (resp.status > 201) { return showLoging(); }
-
-    const notes = await resp.json();
-    console.log(notes);
-    document.querySelector('#usersInfo').style.display = 'block';
     document.querySelector('#logOutButton').style.display = 'block';
     document.querySelector('#btn-Profile').style.display = 'block';
     document.querySelector('#btn-Bank').style.display = 'block';
     document.querySelector('#login').style.display = 'none';
-
+    document.querySelector('#loginbtm').style.display = 'none';
+    console.log("login getUserInfo()");
+    let notes = localStorage.getItem('currentUser');
+let user = JSON.parse(notes);
+console.log(user.email);      // Output: Test@gmail.com
+console.log(user.firstName);  // Output: Boss
+console.log(user.lastName);   // Output: Bob
 
     let notesHTML = "";
-
     notesHTML += `
          <div><h2>Users info</h2></div>
          <div class = "note">
-         Id: ${notes.userInfo._id} <br>
-         Email: ${notes.userInfo.email} <br>
-         FirstName : ${notes.userInfo.firstName}<br>
-         LastName:  ${notes.userInfo.lastName}  <br>
+         Id: ${user._id} <br>
+         Email: ${user.email} <br>
+         FirstName : ${user.firstName}<br>
+         LastName:  ${user.lastName}  <br>
         </div>
-        
-         `;
-
+        `;
     document.querySelector('#usersInfo').innerHTML = notesHTML;
 }
 
@@ -228,6 +244,8 @@ async function login() {
     if (resp.status > 201) { return alert(respJson.msg); }
 
     localStorage.setItem("jwt", respJson.token);
+    localStorage.setItem("currentUser",respJson.token);
+
     getUserInfo();
     // getBank();
 
@@ -237,6 +255,9 @@ async function login() {
     // getServices();
     // getOrders();
     // LogoutButton();
+
+
+    
 }
 
 async function userRegister() {
@@ -272,36 +293,36 @@ async function userRegister() {
     // LogoutButton();
 }
 
-async function getBank() {
-    const resp = await fetch(API_URL + '/bankaccounts', {
-        method: "GET",
-        headers: {
+// async function getBank() {
+//     const resp = await fetch(API_URL + '/bankaccounts', {
+//         method: "GET",
+//         headers: {
 
-            "Authorization": "Bearer " + localStorage.getItem('jwt')
-        }
-    });
+//             "Authorization": "Bearer " + localStorage.getItem('jwt')
+//         }
+//     });
 
-    if (resp.status > 201) { return showLoging(); }
+//     if (resp.status > 201) { return showLoging(); }
 
-    const notes = await resp.json();
-    // console.log(notes);
-    // console.log(notes[0]);
-    document.querySelector('#usersBank').style.display = 'block';
+//     const notes = await resp.json();
+//     // console.log(notes);
+//     // console.log(notes[0]);
+//     document.querySelector('#usersBank').style.display = 'block';
 
-    let notesHTML = "";
-    notesHTML += `
-         <div><h2>Bank Accounts info</h2></div>
-         <div class = "note">
-         BankAccountBalance: ${notes[0].bankAccountBalance} £ <br>
-         BankAccountNumber: ${notes[0].bankAccountNumber} <br>
-         VisaCardId : ${notes[0].visaCardId}<br>
+//     let notesHTML = "";
+//     notesHTML += `
+//          <div><h2>Bank Accounts info</h2></div>
+//          <div class = "note">
+//          BankAccountBalance: ${notes[0].bankAccountBalance} £ <br>
+//          BankAccountNumber: ${notes[0].bankAccountNumber} <br>
+//          VisaCardId : ${notes[0].visaCardId}<br>
          
-        </div>
+//         </div>
         
-         `;
+//          `;
 
-    document.querySelector('#usersBank').innerHTML = notesHTML;
-}
+//     document.querySelector('#usersBank').innerHTML = notesHTML;
+// }
 // getAllBikes();
 
 async function getAllBikes() {
@@ -573,7 +594,7 @@ function myCabins() {
 
 function myUsers() {
     console.log("users");
-    getUserInfo();
+    // getUserInfo();
 }
 
 function myBookins() {

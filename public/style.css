@@ -31,6 +31,9 @@
     /* test from none to block to avoid refreshing  */
   }
 
+  /* login button */
+   #loginbtm{ display: block;} 
+
  #usersInfo{
   display: none;
  }
